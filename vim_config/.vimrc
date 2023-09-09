@@ -17,6 +17,9 @@ set autoindent
 set expandtab
 set smarttab
 
+" backspace
+set backspace=indent,eol,start
+
 " ------------- plugin list start -------------
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -52,6 +55,7 @@ map <silent> <leader>u :TagbarToggle<CR>
 let g:coc_global_extensions = [
   \ 'coc-clangd',
   \ '@yaegassy/coc-pylsp',
+  \ 'coc-rust-analyzer',
   \ 'coc-snippets',
   \ 'coc-pairs',
   \ 'coc-tsserver',
