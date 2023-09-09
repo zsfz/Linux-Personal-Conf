@@ -17,6 +17,9 @@ set autoindent
 set expandtab
 set smarttab
 
+" backspace
+set backspace=indent,eol,start
+
 " ------------- plugin list start -------------
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
