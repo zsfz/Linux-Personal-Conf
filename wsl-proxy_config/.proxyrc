@@ -1,2 +1,10 @@
 host_ip=$(cat /etc/resolv.conf |grep "nameserver" |cut -f 2 -d " ")
 export ALL_PROXY="http://$host_ip:7890"
+
+# wget proxy
+cat <<EOF > $HOME/.wgetrc
+http_proxy = $ALL_PROXY
+https_proxy = $ALL_PROXY
+use_proxy = on
+wait = 15
+EOF
