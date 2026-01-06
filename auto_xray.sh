@@ -28,7 +28,7 @@ echo -e "${GREEN}UUID生成成功：$UUID${NC}"
 echo -e "${YELLOW}[3/6] 正在生成Reality密钥对...${NC}"
 # 捕获xray x25519的输出并提取私钥和公钥（Password对应公钥）
 X25519_OUTPUT=$(xray x25519)
-PRIVATE_KEY=$(echo "$X25519_OUTPUT" | grep "Private key" | awk -F ': ' '{print $2}')
+PRIVATE_KEY=$(echo "$X25519_OUTPUT" | grep "PrivateKey" | awk -F ': ' '{print $2}')
 PUBLIC_KEY=$(echo "$X25519_OUTPUT" | grep "Password" | awk -F ': ' '{print $2}')
 
 if [ -z "$PRIVATE_KEY" ] || [ -z "$PUBLIC_KEY" ]; then
