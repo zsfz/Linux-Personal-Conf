@@ -164,3 +164,25 @@ echo -e "========================================\n"
 # 可选：将链接保存到本地文件
 echo "$CLIENT_LINK" > /root/xray_client_link.txt
 echo -e "${GREEN}客户端链接已保存到：/root/xray_client_link.txt${NC}"
+
+# 静默检查并安装qrencode
+if ! command -v qrencode &> /dev/null; then
+    # 静默安装
+    if [ -f /etc/debian_version ]; then
+        apt-get update > /dev/null 2>&1
+        apt-get install -y qrencode > /dev/null 2>&1
+    elif [ -f /etc/redhat-release ]; then
+        yum install -y qrencode > /dev/null 2>&1
+    elif [ -f /etc/arch-release ]; then
+        pacman -S --noconfirm qrencode > /dev/null 2>&1
+    fi
+fi
+
+# 生成二维码
+if command -v qrencode &> /dev/null; then
+    echo -e "\n${GREEN}二维码：${NC}"
+    echo -e "========================================"
+    qrencode -t ANSIUTF8 "$CLIENT_LINK"
+    echo -e "========================================"
+fi
+
